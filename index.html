@@ -4,9 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ACDC Electricals</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      .banner {
+        background: #009579;
+      }
+      .banner__content {
+        padding: 16px;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+      }
+      .banner__text {
+        flex-grow: 1;
+        line-height: 1.4;
+        font-family: "Verdana", sans-serif;
+      }
+      .banner__close {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .banner__text,
+      .banner__close > span {
+        color: #ffffff;
+      }
+    </style>
   </head>
 
   <body style="padding: 0; margin: 0">
+    <div class="banner">
+      <div class="banner__content">
+        <div class="banner__text">
+          Hi! The website is under maintainence. Till then, refer to our general
+          portfolio!
+        </div>
+        <button class="banner__close" type="button">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+    </div>
     <iframe
       src="https://drive.google.com/file/d/1WuFrW7CaJBpTgexvMsuz7w1nfVH75NtB/preview?usp=drivesdk"
       width="100%"
@@ -14,4 +55,11 @@
       style="position: absolute; margin: 0; border: none; padding: 0"
     ></iframe>
   </body>
+  <script>
+    document
+      .querySelector(".banner__close")
+      .addEventListener("click", function () {
+        this.closest(".banner").style.display = "none";
+      });
+  </script>
 </html>
