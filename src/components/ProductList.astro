@@ -1,0 +1,192 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Product from "./products.astro";
+import type { Filter } from "./products.astro";
+
+type Props = {
+  // take in a prop (products) which is an array of entries from products collection
+  products: CollectionEntry<"products">[];
+};
+
+const { products } = Astro.props;
+
+const filters: Array<Filter> = [
+  {
+    id: "all",
+    label: "All",
+    applied: true,
+  },
+  {
+    id: "bc",
+    label: "Villas/Towers",
+    applied: false,
+  },
+  {
+    id: "wc",
+    label: "Warehouse",
+    applied: false,
+  },
+  {
+    id: "sg",
+    label: "Switchgear",
+    applied: false,
+  },
+  {
+    id: "it",
+    label: "IT",
+    applied: false,
+  },
+  {
+    id: "ia",
+    label: "Industries",
+    applied: false,
+  },
+];
+---
+
+<div>
+  <div
+    class="flex flex-wrap justify-center items-center gap-x-2 max-md:gap-x-1 gap-y-1 mt-5 mb-8">
+    <span class="text-xs font-medium text-slate-800">See: </span>
+    {
+      filters.map((filter) => (
+        <button
+          id={"button-filter-" + filter.id}
+          class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium cursor-pointer"
+          class:list={[
+            {
+              "bg-gray-50 text-gray-600 ring-1 ring-inset ring-gray-500/10":
+                !filter.applied,
+            },
+            {
+              "hover:bg-gray-500 hover:text-gray-50 hover:ring-0":
+                !filter.applied,
+            },
+            { "bg-gray-500 text-gray-50 ring-0": filter.applied },
+            // {"hover:bg-gray-200 hover:text-gray-500": filter.applied},
+          ]}>
+          {filter.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-14 mx-8 mb-24">
+    {
+      products.map((product, index) => (
+        <Product product={product} index={index} />
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline define:vars={{ filters, products }}>
+  function changeFiltersLabelAppearance(filter) {
+    if (filter.applied) {
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("bg-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("text-gray-600");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("ring-1");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("ring-inset");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("ring-gray-500/10");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("hover:bg-gray-500");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("hover:text-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("hover:ring-0");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("bg-gray-500");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("text-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("ring-0");
+      // document
+      //   .getElementById("button-filter-" + filter.id)
+      //   .classList.add("hover:bg-gray-200");
+      // document
+      //   .getElementById("button-filter-" + filter.id)
+      //   .classList.add("hover:text-gray-500");
+    } else {
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("bg-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("text-gray-600");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("ring-1");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("ring-inset");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("ring-gray-500/10");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("hover:bg-gray-500");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("hover:text-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.add("hover:ring-0");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("bg-gray-500");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("text-gray-50");
+      document
+        .getElementById("button-filter-" + filter.id)
+        .classList.remove("ring-0");
+      // document
+      //   .getElementById("button-filter-" + filter.id)
+      //   .classList.remove("hover:bg-gray-200");
+      // document
+      //   .getElementById("button-filter-" + filter.id)
+      //   .classList.remove("hover:text-gray-500");
+    }
+  }
+  function filterProductsToDisplay(tag) {
+    products.forEach((product) => {
+      document.getElementById("product-" + product.slug).style.display =
+        product.data.tags.includes(tag) ? "block" : "none";
+    });
+    // TODO define this ID structure in a constants.
+  }
+  function filterButtonClicked(filter) {
+    for (let i = 0; i < filters.length; i++) {
+      if (filters[i].id == filter.id) {
+        filters[i].applied = true;
+      } else {
+        filters[i].applied = false;
+      }
+      changeFiltersLabelAppearance(filters[i]);
+    }
+    filterProductsToDisplay(filter.id);
+  }
+
+  filters.forEach((filter) => {
+    document
+      .getElementById("button-filter-" + filter.id)
+      .addEventListener("click", () => filterButtonClicked(filter));
+  });
+</script>

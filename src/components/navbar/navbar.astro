@@ -1,0 +1,87 @@
+---
+import Container from "@components/container.astro";
+import Link from "@components/ui/link.astro";
+import Dropdown from "./dropdown.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+
+const menuItems = [
+  {
+    title: "Products",
+    path: "/catalog.pdf",
+    // children: [
+    //   // { title: "Conduits", path: "/products/conduits" },
+    //   // { title: "Switches", path: "/products/switches" },
+    //   // { title: "Harmonic Filter", path: "/products/harmonic-filters" },
+    //   // { title: "Comb Busbar & Lugs", path: "/products/panel-accessories" },
+    //   // { title: "Plumbing Pipes", path: "/products/plumbing-pipes" },
+    //   // { title: "UPS", path: "/products/ups" },
+    //   // other categorisation:
+    //   // { title: "for Buildings", path: "/products?cat=bc" },
+    //   // { title: "for Warehouse", path: "/products?cat=wh" },
+    //   // { title: "for Switchgear", path: "/products?cat=sg" },
+    //   // { title: "for IT", path: "/products?cat=it" },
+    //   // { title: "for Industries", path: "/products?cat=ia" },
+    // ],
+  },
+  // {
+  //   title: "Blog",
+  //   path: "/blog",
+  // },
+  {
+    title: "Contact",
+    path: "/contact",
+  },
+];
+---
+
+<Container>
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+    <Astronav>
+      <div class="flex w-full lg:w-auto items-center justify-between">
+        <a href="/" class="text-lg"
+          ><span class="font-bold text-slate-800">AC</span><span
+            class="text-slate-500">DC</span
+          >
+        </a>
+        <div class="block lg:hidden">
+          <MenuIcon class="w-4 h-4 text-gray-800" />
+        </div>
+      </div>
+      <MenuItems class="hidden w-full lg:w-auto ml-auto mt-2 lg:flex lg:mt-0">
+        <ul class="flex flex-col lg:flex-row lg:gap-3 lg:mr-3">
+          {
+            menuItems.map((item, index) => (
+              <>
+                {/* {item.children && (
+                  <Dropdown
+                    title={item.title}
+                    children={item.children}
+                    lastItem={index === menuItems.length - 1}
+                  />
+                )} */}
+
+                {/* {!item.children && ( */}
+                  <li>
+                    <a
+                      href={item.path}
+                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      <span> {item.title}</span>
+                    </a>
+                  </li>
+                {/* )} */}
+              </>
+            ))
+          }
+        </ul>
+        <div class="lg:hidden flex items-center mt-3">
+          <Link href="https://wa.me/971585960011" size="md" block>Text us</Link>
+        </div>
+      </MenuItems>
+    </Astronav>
+    <div>
+      <div class="hidden lg:flex items-center">
+        <Link href="https://wa.me/971585960011" size="md">Text us</Link>
+      </div>
+    </div>
+  </header>
+</Container>

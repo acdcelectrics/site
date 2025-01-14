@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+export type Filter = {
+  id: string;
+  label: string;
+  applied: boolean;
+};
+type Props = {
+  product: CollectionEntry<"products">;
+  index: number;
+};
+
+const { product, index } = Astro.props;
+---
+
+<!-- <article id={"product-"+product.slug}>
+  <a href={`/products/${product.slug}`}>
+    <Image
+      src={product.data.image}
+      width={600}
+      height={600 / 1.5}
+      alt={product.data.title}
+      class="rounded-2xl shadow-lg mb-4 aspect-thumbnail object-cover"
+    />
+  </a>
+  <a
+    class="text-4xl text-zinc-900 font-semibold inline-block"
+    href={`/blog/${product.slug}`}
+  >
+    <h2>{product.data.title}</h2>
+  </a>
+
+  <p class="text-zinc-500 text-2xl line-clamp-2">
+    {product.body}
+  </p>
+
+</article> -->
+<div class="max-w-sm rounded overflow-hidden shadow-xl">
+  <Image
+      src={product.data.image}
+      width={400}
+      height={400}
+      alt={product.data.title}
+      class="w-full"
+    />
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{product.data.title}</div>
+    <p class="text-gray-700 text-base">
+      {product.data.snippet}
+    </p>
+  </div>
+  <div class="px-6 pt-4 pb-2">
+    {
+      product.data.tags.map((tag) => (
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,54 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    title: "Service at the core",
+    description:
+      "People don't remember you for what you did, they remember you for how you made them feel. We want to make you feel nice.",
+    icon: "bx:bxs-heart",
+  },
+  {
+    title: "Speed in Execution",
+    description:
+      "We aim to get things done. Our ambition to grow is one of the factor that feeds this.",
+    icon: "bx:bxs-window-alt",
+  },
+  {
+    title: "Focus on specific products",
+    description:
+      "We understand strong pricing plays an essential role towards closing sales & retaining inquiries.",
+    icon: "bx:bxs-data",
+  },
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+    Everything you need to know about us
+  </h2>
+  <p class="text-lg mt-4 text-slate-600">
+    Get a better understanding of our <a
+    href="/products"
+    class="hover:underline">
+    products
+  </a>. That'd help you to understand our intersecting points.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+  {
+    features.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
+          <Icon class="text-white" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

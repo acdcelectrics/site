@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import SectionHead from "@components/sectionhead.astro";
+import ProductsList from "@components/ProductList.astro";
+
+
+const products = await getCollection("products");
+---
+
+<Layout title="Products">
+  <Container>
+    <SectionHead>
+      <Fragment slot="title">Product Portfolio</Fragment>
+      <Fragment slot="desc"></Fragment>
+    </SectionHead>
+    <ProductsList products={products}/>
+  </Container>
+</Layout>
