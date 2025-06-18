@@ -1,0 +1,63 @@
+---
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="List of BOQs">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">List of BOQs</Fragment>
+      <Fragment slot="desc">These are ready made Bill of Quantities that can be used in a construction project. Use it as per your preference.</Fragment>
+    </Sectionhead>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mx-auto max-w-4xl mt-16">
+        <a href="./boq/wd.pdf" class="block">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    Wiring Devices
+                </h2>
+                Switches & Sockets<br>
+                General - Any brand
+            </div>
+        </a>
+        <a href="./boq/wd-mk-ess.pdf" class="block">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    Wiring Devices
+                </h2>
+                Switches & Sockets<br>
+                MK Essentials (China)
+            </div>
+        </a>
+        <a href="./boq/cabling.pdf" class="block">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    Cabling Accessories
+                </h2>
+                Glands, Lugs, Sleeves, etc.<br>
+                General - Any brand
+            </div>
+        </a>
+        <a href="./boq/pvc.pdf" class="block">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    PVC Conduits & Accessories
+                </h2>
+                Pipes, Couplers, Elbows, Glue, etc.<br>
+                General - Any brand
+            </div>
+        </a>
+        <a href="./boq/consumables.pdf" class="block">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    Consumables
+                </h2>
+                Screws, Washers, Nuts, etc.<br>
+                General
+            </div>
+        </a>
+    </div>
+
+  </Container>
+</Layout>
